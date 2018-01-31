@@ -95,10 +95,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PlacesPage = (function () {
     function PlacesPage(navCtrl) {
         this.navCtrl = navCtrl;
+        this.places = [
+            { name: 'moku', address: 'moku-address', url: 'moku-url' },
+            { name: 'Sooters', address: 'Sooters-address', url: 'Sooters-url' },
+            { name: 'Illusion', address: 'Illusion-address', url: 'Illusion-url' }
+        ];
     }
+    PlacesPage.prototype.itemSelected = function (item) {
+        console.log("Selected Item", item);
+    };
     PlacesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-places',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Places\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n<div>\n\n  <li>\n\n    Moku\n\n  </li>\n\n  <li>\n\n    Shooters\n\n  </li>\n\n  <li>\n\n    Illusion\n\n  </li>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/
+            selector: 'page-places',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Places\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n<div>\n\n  <ion-list>\n\n    <button ion-item *ngFor="let place of places" (click)="itemSelected(place)">\n\n      <div>{{ place.name }} </div>\n\n      <div>{{ place.address }} </div>\n\n      <div>{{ place.url }} </div>\n\n    </button>\n\n  </ion-list>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], PlacesPage);
