@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.DEBUG, format=FORMAT)
 LOG = logging.getLogger()
 
 # Connect to DB
-conn = psycopg2.connect(dbname='tartunightlife', user='postgres', host='localhost')
+conn = psycopg2.connect(open('.pgpass', 'r').read())
 pg = conn.cursor()
 
 def info(): return '%s by %s, version %s' % (NAME, AUTHOR, VERSION)
