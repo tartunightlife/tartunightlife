@@ -1,2 +1,2 @@
 # tartunightlife
-Phonegap app
+Ionic app
