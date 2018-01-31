@@ -98,12 +98,11 @@ var PlacesPage = (function () {
     }
     PlacesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-places',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Places\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/
+            selector: 'page-places',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Places\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n<div>\n\n  <li>\n\n    Moku\n\n  </li>\n\n  <li>\n\n    Shooters\n\n  </li>\n\n  <li>\n\n    Illusion\n\n  </li>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], PlacesPage);
     return PlacesPage;
-    var _a;
 }());
 
 //# sourceMappingURL=places.js.map
