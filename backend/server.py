@@ -22,7 +22,7 @@ import logging
 from constants import *
 from argparse import ArgumentParser
 import psycopg2
-
+import facebook
 
 # Please use LOGGING
 FORMAT = '%(asctime)-15s %(levelname)s %(threadName)s %(message)s'
@@ -30,19 +30,34 @@ logging.basicConfig(level=logging.DEBUG, format=FORMAT)
 LOG = logging.getLogger()
 
 # Connect to DB
-database = open('.pgpass', 'r').read().split(':')
-conn = psycopg2.connect(host=database[0], port=database[1],\
-                        dbname=database[2], user=database[3], password=database[4])
-pg = conn.cursor()
+#database = open('.pgpass', 'r').read().split(':')
+#conn = psycopg2.connect(host=database[0], port=database[1], dbname=database[2], user=database[3], password=database[4])
+#pg = conn.cursor()
+
+# Init Facebook Graph API
+token = open('.facebook', 'r').read()
+fb = facebook.GraphAPI(token)
 
 def info(): return '%s by %s, version %s' % (NAME, AUTHOR, VERSION)
 
-class Server:
-    def __init__(self, args):
-        LOG.info("Server Started.")
-        pg.execute("SELECT * FROM places;")
-        a = pg.fetchone()
-        LOG.info(a)
+class FacebookScraper:
+    def __init__(self):
+        LOG.info("Facebook thread started.")
+
+    def get_events(self):
+        events = []
+        moku = fb.get_object(id=MOKU, fields='events')
+        genialistide = fb.get_object(id=GENIALISTIDE, fields='events')
+        zavood = fb.get_object(id=ZAVOOD, fields='events')
+        illusion = fb.get_object(id=ILLUSION, fields='events')
+        shooters = fb.get_object(id=SHOOTERS, fields='events')
+        events.append(moku)
+        events.append(genialistide)
+        events.append(zavood)
+        events.append(illusion)
+        events.append(shooters)
+        return events
+
         #self.server_thread = threading.Thread(target=self.server.serve_forever)
         #self.server_thread.start()
         #self.server_thread.join()
@@ -54,7 +69,10 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     try:
-        s = Server(args)
+        face = FacebookScraper()
+        events = face.get_events()
+        print (events)
+
     except KeyboardInterrupt as e:
         print ('Ctrl+C issued ...')
         print ('Terminating ...')
