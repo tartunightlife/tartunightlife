@@ -30,7 +30,9 @@ logging.basicConfig(level=logging.DEBUG, format=FORMAT)
 LOG = logging.getLogger()
 
 # Connect to DB
-conn = psycopg2.connect(open('.pgpass', 'r').read())
+database = open('.pgpass', 'r').read().split(':')
+conn = psycopg2.connect(host=database[0], port=database[1],\
+                        dbname=database[2], user=database[3], password=database[4])
 pg = conn.cursor()
 
 def info(): return '%s by %s, version %s' % (NAME, AUTHOR, VERSION)
