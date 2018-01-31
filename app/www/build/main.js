@@ -41,7 +41,7 @@ webpackEmptyAsyncContext.id = 150;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__places_places__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__events_events__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(197);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -60,10 +60,10 @@ var TabsPage = (function () {
     function TabsPage() {
         this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */];
         this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__places_places__["a" /* PlacesPage */];
-        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__contact_contact__["a" /* ContactPage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__events_events__["a" /* EventsPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="Places" tabIcon="information-circle"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="Places" tabIcon="information-circle"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="Events" tabIcon="contacts"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -96,17 +96,17 @@ var PlacesPage = (function () {
     function PlacesPage(navCtrl) {
         this.navCtrl = navCtrl;
         this.places = [
-            { name: 'moku', address: 'moku-address', url: 'moku-url' },
-            { name: 'Sooters', address: 'Sooters-address', url: 'Sooters-url' },
-            { name: 'Illusion', address: 'Illusion-address', url: 'Illusion-url' }
+            { id: 1, name: 'moku', address: 'moku-address', url: 'moku-url' },
+            { id: 2, name: 'Sooters', address: 'Sooters-address', url: 'Sooters-url' },
+            { id: 3, name: 'Illusion', address: 'Illusion-address', url: 'Illusion-url' }
         ];
     }
-    PlacesPage.prototype.itemSelected = function (item) {
-        console.log("Selected Item", item);
+    PlacesPage.prototype.itemSelected = function (id) {
+        console.log("Selected Item id is", id);
     };
     PlacesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-places',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Places\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n<div>\n\n  <ion-list>\n\n    <button ion-item *ngFor="let place of places" (click)="itemSelected(place)">\n\n      <div>{{ place.name }} </div>\n\n      <div>{{ place.address }} </div>\n\n      <div>{{ place.url }} </div>\n\n    </button>\n\n  </ion-list>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/
+            selector: 'page-places',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Places\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n<div>\n\n  <ion-list>\n\n    <button ion-item *ngFor="let place of places" (click)="itemSelected(place.id)">\n\n      <div>{{ place.name }} </div>\n\n      <div>{{ place.address }} </div>\n\n      <div>{{ place.url }} </div>\n\n    </button>\n\n  </ion-list>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\places\places.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], PlacesPage);
@@ -121,7 +121,7 @@ var PlacesPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -135,20 +135,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var ContactPage = (function () {
-    function ContactPage(navCtrl) {
+var EventsPage = (function () {
+    function EventsPage(navCtrl) {
         this.navCtrl = navCtrl;
+        this.events = [
+            { id: 1, place_id: 1, place_name: "moku", name: 'moku-event', date: 'moku-event-date', url: 'moku-event-url' },
+            { id: 2, place_id: 1, place_name: "Sooters", name: 'Sooters-event', date: 'Sooters-event-date', url: 'Sooters-event-url' },
+            { id: 3, place_id: 1, place_name: "Illusion", name: 'Illusion-event', date: 'Illusion-event-date', url: 'Illusion-event-url' }
+        ];
     }
-    ContactPage = __decorate([
+    EventsPage.prototype.itemSelected = function (id) {
+        console.log("Selected Item id is", id);
+    };
+    EventsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Contact\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-list>\n\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n\n    <ion-item>\n\n      <ion-icon name="ionic" item-start></ion-icon>\n\n      @ionicframework\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\contact\contact.html"*/
+            selector: 'page-evnts',template:/*ion-inline-start:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\events\events.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Events\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n<div>\n\n    <ion-list>\n\n        <button ion-item *ngFor="let event of events" (click)="itemSelected(event.id)">\n\n          <div>{{ event.name }} </div>\n\n          <div>{{ event.place_name }} </div>\n\n          <div>{{ event.date }} </div>\n\n          <div>{{ event.url }} </div>\n\n        </button>\n\n      </ion-list>\n\n</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\abel\Documents\2nd semester\PhoneGap\tartunightlife\app\src\pages\events\events.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
-    ], ContactPage);
-    return ContactPage;
+    ], EventsPage);
+    return EventsPage;
 }());
 
-//# sourceMappingURL=contact.js.map
+//# sourceMappingURL=events.js.map
 
 /***/ }),
 
@@ -211,7 +219,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_places_places__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_events_events__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(190);
@@ -240,7 +248,7 @@ var AppModule = (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_4__pages_places_places__["a" /* PlacesPage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_5__pages_events_events__["a" /* EventsPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__["a" /* TabsPage */]
             ],
@@ -254,7 +262,7 @@ var AppModule = (function () {
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_4__pages_places_places__["a" /* PlacesPage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_contact_contact__["a" /* ContactPage */],
+                __WEBPACK_IMPORTED_MODULE_5__pages_events_events__["a" /* EventsPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_tabs_tabs__["a" /* TabsPage */]
             ],
