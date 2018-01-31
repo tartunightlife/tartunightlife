@@ -21,6 +21,7 @@ from constants import *
 from facebook_scraper import *
 from argparse import ArgumentParser
 import psycopg2
+from eve import Eve
 
 #-------------- Methods -------------------------
 
@@ -55,7 +56,8 @@ if __name__=="__main__":
         fb = FacebookScraper()
         events = fb.get_events()
         print (events)
-
+        app = Eve()
+        app.run()
 
     except KeyboardInterrupt as e:
         print ('Ctrl+C issued ...')
