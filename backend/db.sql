@@ -7,6 +7,7 @@ create table places (
 create table event (
  uuid uuid PRIMARY KEY NOT NULL,
  place_uuid uuid references places(uuid),
+ name varchar(45) NOT NULL,
  date date,
  url varchar(300),
  comment varchar(300));
