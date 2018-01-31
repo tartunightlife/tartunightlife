@@ -1,20 +1,16 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-usage: server.py [-h] [-v] [-l LADDR] [-p PORT] [-d DUMP] [-m MAX_FILESIZE]
+usage: server.py [-h] [-l LADDR] [-p PORT]
 
-File exchange by Bruno Produit, version 1.0
+Tartu Night Life by Bruno Produit, Basar Turgut, Abel Mesfin, Saumitra Bagchi,
+version 1.0
 
 optional arguments:
   -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
   -l LADDR, --laddr LADDR
                         Listen address. Default localhost.
   -p PORT, --port PORT  Listen on port.
-  -d DUMP, --dump DUMP  Folder as dump dir.
-  -m MAX_FILESIZE, --max-filesize MAX_FILESIZE
-                        Max filesize for server
-
 """
 import os
 import threading
@@ -23,20 +19,24 @@ from constants import *
 from argparse import ArgumentParser
 import psycopg2
 import facebook
-
+import requests
 # Please use LOGGING
 FORMAT = '%(asctime)-15s %(levelname)s %(threadName)s %(message)s'
 logging.basicConfig(level=logging.DEBUG, format=FORMAT)
 LOG = logging.getLogger()
 
-# Connect to DB
-#database = open('.pgpass', 'r').read().split(':')
-#conn = psycopg2.connect(host=database[0], port=database[1], dbname=database[2], user=database[3], password=database[4])
-#pg = conn.cursor()
+def initialize():
+    # Connect to DB
+    database = open('.pgpass', 'r').read().split(':')
+    #conn = psycopg2.connect(host=database[0], port=int(database[1]), database=database[2], user=database[3], password=database[4])
+    #pg = conn.cursor()
 
-# Init Facebook Graph API
-token = open('.facebook', 'r').read()
-fb = facebook.GraphAPI(token)
+    # Init Facebook Graph API
+    client = open('.facebook', 'r').read().strip().split(':')
+    payload = {'client_id': client[0], 'client_secret': client[1], 'grant_type' : 'client_credentials'}
+    token = requests.get("https://graph.facebook.com/oauth/access_token", params=payload)
+    token = token.json()['access_token']
+    fb = facebook.GraphAPI(token)
 
 def info(): return '%s by %s, version %s' % (NAME, AUTHOR, VERSION)
 
@@ -46,16 +46,8 @@ class FacebookScraper:
 
     def get_events(self):
         events = []
-        moku = fb.get_object(id=MOKU, fields='events')
-        genialistide = fb.get_object(id=GENIALISTIDE, fields='events')
-        zavood = fb.get_object(id=ZAVOOD, fields='events')
-        illusion = fb.get_object(id=ILLUSION, fields='events')
-        shooters = fb.get_object(id=SHOOTERS, fields='events')
-        events.append(moku)
-        events.append(genialistide)
-        events.append(zavood)
-        events.append(illusion)
-        events.append(shooters)
+        for i in PLACES:
+            events.append(fb.get_object(id=i, fields='events'))
         return events
 
         #self.server_thread = threading.Thread(target=self.server.serve_forever)
@@ -69,9 +61,11 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     try:
+        initialize()
         face = FacebookScraper()
         events = face.get_events()
         print (events)
+
 
     except KeyboardInterrupt as e:
         print ('Ctrl+C issued ...')
