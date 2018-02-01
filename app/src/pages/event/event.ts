@@ -8,7 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class EventPage {
   event;
   constructor(params: NavParams) {
-    this.event = params.data.item;
+    this.event = params.data.event;
   }
 
 }
