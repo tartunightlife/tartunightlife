@@ -1,4 +1,3 @@
 __pycache__
 *.pyc_
-.pgpass
-.facebook
+misc/
