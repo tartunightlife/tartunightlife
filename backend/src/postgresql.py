@@ -7,7 +7,7 @@ class PostgreSQL:
 
     def __init__(self):
         # Init DB connection
-        pgpass = open('.pgpass', 'r').read().split(':')
+        pgpass = open('../misc/pgpass', 'r').read().split(':')
         self.conn = psycopg2.connect("dbname=" + pgpass[2] + " user=" + pgpass[3]\
                                 + " password=" + pgpass[4] + " port="+ pgpass[1])
         self.cur = self.conn.cursor()
