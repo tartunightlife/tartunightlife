@@ -1,14 +1,13 @@
 create table places (
- uuid uuid PRIMARY KEY NOT NULL,
- name varchar(45) NOT NULL,
- address varchar(45),
+ uuid varchar(36) PRIMARY KEY NOT NULL,
+ name varchar(300) NOT NULL,
+ address varchar(300),
  url varchar(300));
 
-create table event (
- uuid uuid PRIMARY KEY NOT NULL,
- place_uuid uuid references places(uuid),
- name varchar(45) NOT NULL,
+create table events (
+ uuid varchar(36) PRIMARY KEY NOT NULL,
+ place_uuid varchar(36) references places(uuid),
+ name varchar(300) NOT NULL,
  date date,
  url varchar(300),
  comment varchar(300));
-

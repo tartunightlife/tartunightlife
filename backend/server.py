@@ -19,8 +19,8 @@ optional arguments:
 import logging
 from constants import *
 from facebook_scraper import *
+from postgresql import *
 from argparse import ArgumentParser
-import psycopg2
 from eve import Eve
 
 #-------------- Methods -------------------------
@@ -38,24 +38,50 @@ def initialize():
     args = parser.parse_args()
 
     # Database
-    database = open('.pgpass', 'r').read().split(':')
-    #conn = psycopg2.connect(host=database[0], port=int(database[1]), database=database[2], user=database[3], password=database[4])
-    #pg = conn.cursor()
+    pg = PostgreSQL()
+
+    # Facebook
+    fb = FacebookScraper()
+
+    return pg, fb
 
 def info(): return '%s by %s, version %s' % (NAME, AUTHOR, VERSION)
 
+def parse_facebook_places(place):
+    return places
+
+def parse_facebook_events(events):
+    parsed = []
+    for i in events:
+        for j in i['events']['data']:
+            evnt = {}
+            evnt['name'] = j['name']
+            evnt['uuid'] = j['id']
+            evnt['address'] = j['place']['location']['street'] + ', ' +\
+                                j['place']['location']['city'] + ', ' +\
+                                j['place']['location']['country']
+            parsed.append(evnt)
+    return parsed
 
 #-------------- Main -------------------------
 
 if __name__=="__main__":
     try:
         # Init
-        initialize()
+        pg, fb = initialize()
 
         # Facebook Scraping
-        fb = FacebookScraper()
         events = fb.get_events()
-        print (events)
+
+        events = parse_facebook_events(events)
+
+        for i in events:
+            pg.insert("places", i)
+
+        print(pg.select("*", "places"))
+
+
+        # REST Service
         app = Eve()
         app.run()
 
