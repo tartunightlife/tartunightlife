@@ -9,7 +9,7 @@
 <ion-content>
 <div>
     <ion-list>
-        <button ion-item *ngFor="let event of events" (click)="itemSelected(event.id)">
+        <button ion-item *ngFor="let event of events" (click)="openEventPage(event)">
           <div>{{ event.name }} </div>
           <div>{{ event.place_name }} </div>
           <div>{{ event.date }} </div>
