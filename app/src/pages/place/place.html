@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Place</ion-title>
+    </ion-navbar>
+</ion-header>
+  
+<ion-content padding>
+    <h2>Place page</h2>
+    <p>{{place.name}}</p>
+    <ion-list>
+        <button ion-item *ngFor="let event of place.events" (click)="openEventPage(event)">
+          <div>{{ event.name }} </div>
+          <div>{{ event.place_name }} </div>
+          <div>{{ event.date }} </div>
+          <div>{{ event.url }} </div>
+        </button>
+    </ion-list>
+</ion-content>
+  
