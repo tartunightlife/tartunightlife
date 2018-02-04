@@ -8,4 +8,4 @@ SERVER_INET_ADDR = '127.0.0.1' # IP to listen to
 SERVER_PORT = 1234 # Port to listen to
 
 # FB links
-PLACES = ['mokubaar', 'GenKlubi', 'klubi.illusion', 'shooterstartu', 'lokaalarhiiv'] # To be replaced by Places in DB
+DEFAULT_TARTU_PLACES = ['mokubaar', 'GenKlubi', 'klubi.illusion', 'shooterstartu', 'lokaalarhiiv'] # To be replaced by Places in DB

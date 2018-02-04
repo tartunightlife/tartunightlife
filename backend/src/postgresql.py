@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import psycopg2
 from constants import *
 
@@ -13,11 +16,11 @@ class PostgreSQL:
         self.cur = self.conn.cursor()
         self.conn.autocommit=True
 
-    def insert(self, table, values):
-        self.cur.execute("INSERT INTO " + table + """ VALUES (%s, %s, %s, %s)\
-        ON CONFLICT DO NOTHING;""",\
-                  (values['uuid'], values['name'], values['address'], ''))
-
-    def select(self, columns, table, where="TRUE"):
-        self.cur.execute("SELECT " + columns + " FROM " + table + " WHERE " + where + ";")
-        return self.cur.fetchall()
+    def query(self, query):
+        self.cur.execute(query)
+        res = None
+        try:
+            res = self.cur.fetchall()
+        except psycopg2.ProgrammingError:
+            print("nothing to fetch")
+        return res

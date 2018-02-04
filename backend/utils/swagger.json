@@ -1,0 +1,15 @@
+{
+    'title': 'Tartu Night Life',
+    'version': '0.1',
+    'description': 'an API description',
+    'termsOfService': 'my terms of service',
+    'contact': {
+        'name': 'github',
+        'url': 'https://github.com/tartunightlife/tartunightlife'
+    },
+    'license': {
+        'name': 'Apache',
+        'url': 'https://github.com/tartunightlife/tartunightlife/blob/master/LICENSE',
+    },
+    'schemes': ['http', 'https'],
+}
