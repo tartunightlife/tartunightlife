@@ -1,11 +1,13 @@
 # tartunightlife
- Ionic app for nightlife in Tartu, Estonia 
+ Ionic app for nightlife in Tartu, Estonia.
+ This is a small project which targets to centralize information about events happening in Tartu.
+ This is a prototype and is not intended to be perfect.
  
  ## app
  This folder contains the ionic app (Typescript)
  
  ## backend
- This folder contains the server-side code for the app, it is written in python.
+ This folder contains the server-side code for the app, it is written in python 3.6.
  ```
  usage: server.py [-h] [-l LADDR] [-p PORT]
 
