@@ -1,6 +1,8 @@
 # tartunightlife
  Ionic app for nightlife in Tartu, Estonia.
+ 
  This is a small project which targets to centralize information about events happening in Tartu.
+ 
  This is a prototype and is not intended to be perfect.
  
  ## app
