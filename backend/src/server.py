@@ -18,6 +18,7 @@ optional arguments:
 
 #-------------- Imports -------------------------
 
+import sys
 from constants import *
 from facebook_scraper import *
 from postgresql import *
@@ -79,6 +80,14 @@ if __name__=="__main__":
     """ Main program entry, declares the processes and join them at the end """
 
     try:
+        LOG.info ("""
+        
+        ========================================================================================
+        ------------------------------------Starting server ------------------------------------
+        ========================================================================================
+
+                  """)
+
         # Init
         pg, fb, app = initialize()
 
