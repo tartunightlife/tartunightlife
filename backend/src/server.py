@@ -18,7 +18,6 @@ optional arguments:
 
 #-------------- Imports -------------------------
 
-import logging
 from constants import *
 from facebook_scraper import *
 from postgresql import *
@@ -30,10 +29,11 @@ from multiprocessing import Process
 #-------------- Methods -------------------------
 
 def initialize():
-    # Logging
-    FORMAT = '%(asctime)-15s %(levelname)s %(threadName)s %(message)s'
-    logging.basicConfig(level=logging.DEBUG, format=FORMAT)
-    LOG = logging.getLogger()
+    """
+    This methods initialises the main components.
+    It returns the postgreSQL object, as well as the Facebook scraper and the REST middleware:
+    (pg, fb, app)
+    """
 
     # Arguments
     parser = ArgumentParser(description=info())
@@ -58,18 +58,26 @@ def initialize():
     app.config['SWAGGER_HOST'] = args.ip
     return pg, fb, app
 
-def info(): return '%s by %s, version %s' % (NAME, AUTHOR, VERSION)
+def info():
+    """ Returns name, author and current version of the program """
+
+    return '%s by %s, version %s' % (NAME, AUTHOR, VERSION)
 
 
 def facebook_process(pg, fb):
+    """ Handle the facebook scraping process """
+
     # Facebook Scraping
     events = fb.fetch_events(pg.query("SELECT fb_id FROM places;"))
 
     for i in events:
         Event.insert(pg, "events", i)
+
 #-------------- Main -------------------------
 
 if __name__=="__main__":
+    """ Main program entry, declares the processes and join them at the end """
+
     try:
         # Init
         pg, fb, app = initialize()
@@ -78,14 +86,15 @@ if __name__=="__main__":
         processes = []
 
         processes.append(Process(target=facebook_process, args=(pg, fb)))
-        processes.append(Process(target=print(pg.query("SELECT * FROM places;"))))
+        processes.append(Process(target=LOG.info(pg.query("SELECT * FROM places;"))))
         processes.append(Process(target=app.run()))
 
+        # Start and join each process in the list
         for i in processes:
             i.start()
             i.join()
 
     except KeyboardInterrupt as e:
-        print ('Ctrl+C issued ...')
-        print ('Terminating ...')
+        LOG.info ('Ctrl+C issued ...')
+        LOG.info ('Terminating ...')
         sys.exit(0)
